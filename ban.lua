@@ -71,7 +71,7 @@ nick = sampGetPlayerNickname(id)
 
 imgui.Process = false
 
-autoupdate("https://raw.githubusercontent.com/Neronedadaz/my-scripts/main/what", '['..string.upper(thisScript().name)..']: ', "https://github.com/Neronedadaz/my-scripts/blob/main/ban.luac?raw=true")
+autoupdate("https://raw.githubusercontent.com/Neronedadaz/my-scripts/main/what", '['..string.upper(thisScript().name)..']: ', "https://raw.githubusercontent.com/Neronedadaz/my-scripts/main/ban.lua")
 
 while true do
 wait(0)
