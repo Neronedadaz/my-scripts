@@ -1,7 +1,7 @@
 script_name('Admin TOOLS')
 script_author('Wolt Nestero')
 script_description('Command')
-script_version('1.4') 
+script_version('1.7') 
 
 require "lib.moonloader"
 local inicfg = require 'inicfg'
@@ -228,7 +228,7 @@ thisScript():unload()
 end
 
 function cmd_update(arg)
-sampAddChatMessage(u8"123 kefichik.lua ")
+sampAddChatMessage(u8"123 kefichik.lua", -1)
 end
 
 sampRegisterChatCommand("gg", function(gg_arg)
