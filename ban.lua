@@ -1,7 +1,7 @@
 script_name('Admin TOOLS')
 script_author('Wolt Nestero')
 script_description('Command')
-script_version('1.7') 
+script_version('1.8') 
 
 require "lib.moonloader"
 local inicfg = require 'inicfg'
@@ -27,13 +27,6 @@ local arrr = imgui.ImBool(false)
 local arrrr = imgui.ImBool(false)
 local checked_radio = imgui.ImInt(1)
 
-local text_buffer = imgui.ImBuffer(256)
-local text_buffer2 = imgui.ImBuffer(256)
-local text_buffer3 = imgui.ImBuffer(256)
-local text_buffer4 = imgui.ImBuffer(256)
-local text_buffer5 = imgui.ImBuffer(256)
-local text_buffer6 = imgui.ImBuffer(256)
-local text_buffer7 = imgui.ImBuffer(256)
 local text_buffer8 = imgui.ImBuffer(256)
 local text_buffer9 = imgui.ImBuffer(256)
 local text_buffer10 = imgui.ImBuffer(256)
@@ -46,6 +39,13 @@ local text_buffer14 = imgui.ImBuffer(256)
 local meropriyatie = imgui.ImBool(false)
 local spawncarsall = imgui.ImBool(false)
 local pravilaall = imgui.ImBool(false)
+
+
+local svoyoname = imgui.ImBuffer(u8'Своё название', 256)
+local endnamemp = imgui.ImBuffer(256)
+
+local idpobeda = imgui.ImInt(0)
+local namepobeda = imgui.ImBuffer(256)
 
 local style = imgui.GetStyle() -- оранжевя тема
 local colors = style.Colors
@@ -341,70 +341,9 @@ if armiya.v then
 local sw, sh = getScreenResolution()
 --- center
 imgui.SetNextWindowPos(imgui.ImVec2(sw / 2, sh / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-imgui.SetNextWindowSize(imgui.ImVec2(300, 300), imgui.Cond.FirstUseEver)
-imgui.Begin(u8'Объявить лидера', armiya)
-if imgui.CollapsingHeader(u8'МО') then
-imgui.Separator()
-imgui.Text(u8"Объявить лидера ТСР")
-imgui.InputText(u8"Введите ник лидера.", text_buffer)
-imgui.Text(u8"/ao Новый лидер Тюрьмы Строго Режима -  " .. u8:decode( text_buffer.v) .. u8". Поздравляем!!")
-imgui.Separator()
-if imgui.Button(u8'Объявить лидера') then
-sampSendChat('/ao Новый Лидер Тюрьмы Строго Режима -' .. u8:decode( text_buffer.v) .. u8'.Поздравляем!!')
-end
-imgui.Separator()
-imgui.Separator()
-imgui.Text(u8'Объявить лидера об окончании срока!!')
-imgui.InputText(u8'Введите ник', text_buffer2)
-imgui.Text(u8'/ao Лидер Тюрьмы Строгого Режима ' .. u8:decode( text_buffer2.v) .. u8' успешно отстоял свой срок. Поздравим его!!')
-imgui.Separator()
-if imgui.Button(u8'Объявить') then
-sampSendChat(u8'/ao Лидер Тюрьмы Строгого Режима ' .. u8:decode( text_buffer2.v) .. u8' успешно отстоял свой срок. Поздравим его!!')
-end
-imgui.Separator()
-imgui.Separator()
-imgui.Text(u8"Объявить лидера ЛСА(МП)")
-imgui.InputText(u8"Введите ник лидера.", text_buffer3)
-imgui.Text(u8"/ao Новый лидер Армии г.Лос-Сантос -  " .. u8:decode( text_buffer3.v) .. u8". Поздравляем!!")
-imgui.Separator()
-if imgui.Button(u8'Объявить лидера') then
-sampSendChat('/ao Новый Лидер Армии г.Лос-Сантос -' .. u8:decode( text_buffer3.v) .. u8'.Поздравляем!!')
-end
-imgui.Separator()
-imgui.Text(u8'Объявить лидера об окончании срока!!')
-imgui.InputText(u8'Введите ник', text_buffer3)
-imgui.Text(u8'/ao Лидер Армии г.Лос-Сантос ' .. u8:decode( text_buffer3.v) .. u8' успешно отстоял свой срок. Поздравим его!!')
-imgui.Separator()
-if imgui.Button(u8'Объявить') then
-sampSendChat(u8'/ao Лидер Армии г.Лос-Сантос ' .. u8:decode( text_buffer3.v) .. u8' успешно отстоял свой срок. Поздравим его!!')
-end
-imgui.Separator()
-imgui.Separator()
-imgui.Text(u8"Объявить лидера СФА(ВМС)")
-imgui.InputText(u8"Введите ник лидера.", text_buffer3)
-imgui.Text(u8"/ao Новый лидер Армии г.Сан-Фиерро -  " .. u8:decode( text_buffer4.v) .. u8". Поздравляем!!")
-imgui.Separator()
-if imgui.Button(u8'Объявить лидера') then
-sampSendChat('/ao Новый Лидер Армии г.Сан-Фиерро -' .. u8:decode( text_buffer4.v) .. u8'.Поздравляем!!')
-end
-imgui.Separator()
-imgui.Text(u8'Объявить лидера об окончании срока!!')
-imgui.InputText(u8'Введите ник', text_buffer4)
-imgui.Text(u8'/ao Лидер Армии г.Сан-Фиерро ' .. u8:decode( text_buffer4.v) .. u8' успешно отстоял свой срок. Поздравим его!!')
-imgui.Separator()
-if imgui.Button(u8'Объявить') then
-sampSendChat(u8'/ao Лидер Армии г.Сан-Фиерро' .. u8:decode( text_buffer4.v) .. u8' успешно отстоял свой срок. Поздравим его!!')
-end
-end
-if imgui.CollapsingHeader(u8'МЮ') then
-imgui.Text(u8"Объявить лидера ФБР")
-imgui.InputText(u8"Введите ник лидера.", text_buffer5)
-imgui.Text(u8"/ao Новый Директор ФБР -  " .. u8:decode( text_buffer5.v) .. u8". Поздравляем!!")
-imgui.Separator()
-if imgui.Button(u8'Объявить лидера') then
-sampSendChat('/ao Новый Директор ФБР -' .. u8:decode( text_buffer5.v) .. u8'. Поздравляем!!')
-end
-end
+imgui.SetNextWindowSize(imgui.ImVec2(530, 220), imgui.Cond.FirstUseEver)
+imgui.Begin(u8'Объявить лидера', armiya, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoCollapse)
+  leaderobyav()
 imgui.End()
 end
 -- new okno
@@ -504,4 +443,64 @@ imgui.Begin(u8"Общие Правила Гос.Структур", pravilaall, imgui.WindowFlags.NoResi
 imgui.Text(u8"В РАЗРАБОТКЕ")
 imgui.End()
 end
+end
+
+function leaderobyav()
+    if imgui.Button(u8("LSPD"), imgui.ImVec2(95, 20)) then
+      endnamemp.v = u8'LSPD'
+    end
+    imgui.SameLine()
+    if imgui.Button(u8("RCSD"), imgui.ImVec2(95, 20)) then
+      endnamemp.v = u8'RCSD'
+    end
+    imgui.SameLine()
+    if imgui.Button(u8("LVPD"), imgui.ImVec2(95, 20)) then
+      endnamemp.v = u8'LVPD'
+    end
+    imgui.SameLine()
+    if imgui.Button(u8("SFPD"), imgui.ImVec2(95, 20)) then
+      endnamemp.v = u8'SFPD'
+    end
+    imgui.SameLine()
+    if imgui.Button(u8("FBI"), imgui.ImVec2(95, 20)) then
+      endnamemp.v = u8'FBI'
+    end
+
+    imgui.Text('                                 ')
+
+
+  imgui.Text(u8'ID Игрока:')
+  imgui.SameLine()
+  imgui.PushItemWidth(90)
+  if imgui.InputInt(u8(""), idpobeda) then
+    if idpobeda.v < 0 then
+      idpobeda.v = 0
+    end
+    if idpobeda.v > 999 then
+      idpobeda.v = 999
+    end
+  end 
+  
+  if idpobeda.v > -1 and idpobeda.v < 1000 then
+    if sampIsPlayerConnected(idpobeda.v) then
+      if #endnamemp.v < 3 then
+        imgui.Text(u8'Выберите фракцию!')
+      else
+      imgui.Text(u8'/ao На пост лидера "'..endnamemp.v..'" '..(u8('назначен'))..' '..sampGetPlayerNickname(idpobeda.v)..'['..idpobeda.v..']. '..(u8('Поздравляем!')))
+      
+      end
+    else
+      imgui.Text(u8'Такого игрока нет на сервере!')
+    end
+  end
+  imgui.Text(u8'')
+  if #endnamemp.v > 1 and sampIsPlayerConnected(idpobeda.v) then
+    if imgui.Button(u8("Огласить в /ao"), imgui.ImVec2(500, 20)) then
+      sampSendChat('/ao На пост лидера "'..(u8:decode(endnamemp.v..'" '..(u8('назначен'))..' '..sampGetPlayerNickname(idpobeda.v)..'['..idpobeda.v)..'], Поздравляем!'))
+    end
+  else
+    if imgui.Button(u8("Огласить в /ao"), imgui.ImVec2(480, 20)) then
+      sampAddChatMessage(tag..'Укажите ID и Название Фракции!', 0x009D00)
+    end
+  end
 end
