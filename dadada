@@ -1,0 +1,9 @@
+ if #obyavaliderasrok.v > 1 and sampIsPlayerConnected(prostozdravstuy.v) then
+    if imgui.Button(u8("Огласить в /ao"), imgui.ImVec2(500, 20)) then
+      sampAddChatMessage('/ao Лидер "'..(u8:decode(obyavaliderasrok.v..'" '..sampGetPlayerNickname(prostozdravstuy.v)..'['..prostozdravstuy.v)..'] ' ..(u8:decode('успешно отстоял свой срок'))..'.Поздравляем!'), -1)
+    end
+  else
+    if imgui.Button(u8("Огласить в /ao"), imgui.ImVec2(480, 20)) then
+      sampAddChatMessage(tag..'Укажите ID и Название Фракции!', 0x009D00)
+    end
+		end
